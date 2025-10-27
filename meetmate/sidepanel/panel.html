@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MeetMate</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="panel.css">
+</head>
+<body class="h-screen flex flex-col bg-gray-50">
+
+  <!-- Header -->
+  <header class="gradient-header text-white px-6 py-5 text-center">
+    <h1 class="text-2xl font-bold mb-1">MeetMate</h1>
+    <p class="text-sm opacity-90">AI Meeting Co-Pilot</p>
+  </header>
+
+  <!-- Status Bar -->
+  <div class="bg-gray-100 border-b border-gray-200 px-4 py-2">
+    <div class="flex items-center gap-2 text-sm text-gray-600">
+      <span class="w-2 h-2 rounded-full bg-gray-400 status-dot" id="statusDot"></span>
+      <span id="statusText">Initializing...</span>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <div class="flex bg-white border-b-2 border-gray-200">
+    <button class="tab-btn flex-1 px-4 py-3 text-sm font-medium text-purple-600 border-b-2 border-purple-600 -mb-0.5" data-tab="notes">
+      Notes
+    </button>
+    <button class="tab-btn flex-1 px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50" data-tab="screenshots">
+      Screenshots
+    </button>
+    <button class="tab-btn flex-1 px-4 py-3 text-sm font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50" data-tab="summary">
+      Summary
+    </button>
+  </div>
+
+  <!-- Tab Content -->
+  <div class="flex-1 overflow-y-auto">
+
+    <!-- Notes Tab -->
+    <div class="tab-pane p-4" id="notes">
+      <div class="space-y-4">
+        <!-- Notes Input -->
+        <div>
+          <h2 class="text-base font-semibold text-gray-900 mb-3">Meeting Notes</h2>
+          <textarea
+            id="notesInput"
+            placeholder="Type your notes here... AI will automatically detect action items"
+            rows="10"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-y"
+          ></textarea>
+          <button id="analyzeNotes" class="w-full mt-3 px-4 py-2.5 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            🔍 Detect Action Items
+          </button>
+        </div>
+
+        <!-- Action Items Section -->
+        <div id="actionItemsSection" class="hidden">
+          <h2 class="text-base font-semibold text-gray-900 mb-3">Action Items</h2>
+          <div id="actionItemsList" class="space-y-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Screenshots Tab -->
+    <div class="tab-pane hidden p-4" id="screenshots">
+      <div class="space-y-4">
+        <div>
+          <h2 class="text-base font-semibold text-gray-900 mb-3">Captured Slides</h2>
+          <button id="captureBtn" class="w-full px-4 py-2.5 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            📸 Capture Screenshot
+          </button>
+        </div>
+        <div id="screenshotGallery" class="grid grid-cols-2 gap-3 mt-4"></div>
+        <p id="screenshotHelp" class="text-center text-gray-500 text-sm mt-4">
+          Click the button above to capture and analyze slides
+        </p>
+      </div>
+    </div>
+
+    <!-- Summary Tab -->
+    <div class="tab-pane hidden p-4" id="summary">
+      <div class="space-y-6">
+        <!-- Summary Section -->
+        <div>
+          <h2 class="text-base font-semibold text-gray-900 mb-3">Meeting Summary</h2>
+          <button id="generateSummary" class="w-full px-4 py-2.5 bg-purple-600 text-white font-medium rounded-lg hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            ✨ Generate Summary
+          </button>
+          <div id="summaryContent" class="hidden mt-4 p-4 bg-gray-100 rounded-lg text-sm leading-relaxed whitespace-pre-wrap"></div>
+        </div>
+
+        <!-- Email Section -->
+        <div id="emailSection" class="hidden">
+          <h2 class="text-base font-semibold text-gray-900 mb-3">Follow-up Email</h2>
+          <button id="draftEmail" class="w-full px-4 py-2.5 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            📧 Draft Email
+          </button>
+          <div id="emailContent" class="hidden mt-4 p-4 bg-gray-100 rounded-lg text-sm leading-relaxed whitespace-pre-wrap"></div>
+          <button id="copyEmail" class="hidden w-full mt-3 px-4 py-2.5 bg-gray-100 text-gray-700 font-medium rounded-lg hover:bg-gray-200 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2">
+            📋 Copy to Clipboard
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 border-t border-gray-200 px-4 py-3 text-center text-xs text-gray-500">
+    Powered by Chrome Built-in AI
+  </footer>
+
+  <script src="panel.js"></script>
+</body>
+</html>

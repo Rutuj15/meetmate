@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "MeetMate - AI Meeting Co-Pilot",
+  "version": "1.0.0",
+  "description": "AI-powered meeting assistant with real-time note-taking, screenshot analysis, and smart summaries using Chrome Built-in AI",
+
+  "trial_tokens": [
+    "A6gvdLZbsileqjhcKqqLqFI9xMvuEz/rpCHQ88SRnBHwYPPN39ShHHn92PCod+J8SFnnjbbKfBlolzw0HJC4IgcAAACPeyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vZWdpbW9pbW1pZWRjcGtocGpiZm5ucGlsZGFqZ2VvY3AiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDAsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=",
+    "A7zSBSLHrB90B9eBEOPf8bmhFXi00IcGgIS0nukmFYeF6keis4zKri7/SMeZhC/CFuMZopP1+aV1pzIP3UHC8gEAAACAeyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vZWdpbW9pbW1pZWRjcGtocGpiZm5ucGlsZGFqZ2VvY3AiLCJmZWF0dXJlIjoiQUlXcml0ZXJBUEkiLCJleHBpcnkiOjE3Njk0NzIwMDAsImlzVGhpcmRQYXJ0eSI6dHJ1ZX0=",
+    "Ay7ie21Ju7QPxyE5Hydhj+KnhDq870NTuNl/lUSwQ85Rs/2HqeDCRdk8FLAGM3KTaJtgXHdHdUabQdwkZczGOQ4AAACCeyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vZWdpbW9pbW1pZWRjcGtocGpiZm5ucGlsZGFqZ2VvY3AiLCJmZWF0dXJlIjoiQUlSZXdyaXRlckFQSSIsImV4cGlyeSI6MTc2OTQ3MjAwMCwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ==",
+    "A+JApFnscioI7Q6NdNmm+qKQq8mpXGiIkgOQFeKROp6Rxl7GqZ56T4153uKfleHAF2JLg6pMT2ym1/pFe13NDAsAAACFeyJvcmlnaW4iOiJjaHJvbWUtZXh0ZW5zaW9uOi8vZWdpbW9pbW1pZWRjcGtocGpiZm5ucGlsZGFqZ2VvY3AiLCJmZWF0dXJlIjoiQUlQcm9vZnJlYWRlckFQSSIsImV4cGlyeSI6MTc3OTE0ODgwMCwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="
+  ],
+
+  "permissions": [
+    "sidePanel",
+    "activeTab",
+    "storage",
+    "tabCapture"
+  ],
+
+  "host_permissions": [
+    "https://meet.google.com/*"
+  ],
+
+  "background": {
+    "service_worker": "background/service-worker.js"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["https://meet.google.com/*"],
+      "js": ["content-scripts/meet-injector.js"],
+      "run_at": "document_idle"
+    }
+  ],
+
+  "side_panel": {
+    "default_path": "sidepanel/panel.html"
+  },
+
+  "action": {
+    "default_title": "Open MeetMate"
+  }
+}
